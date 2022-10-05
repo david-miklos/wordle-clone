@@ -1,0 +1,91 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    background-color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 5px;
+    border-bottom: 1px solid #d3d6da;
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px 0px;
+}
+
+.spinner {
+    height: 40px;
+}
+
+.brand {
+    font-family: "Abril Fatface";
+}
+
+.game {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0px;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 5px;
+    max-width: 350px;
+}
+
+.board-square {
+    border: 2px solid #d3d6da;
+    height: 62px;
+    width: 62px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 35px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes flash {
+    5% {
+        border-color: crimson;
+    }
+
+    100% {
+        border-color: #d3d6da;
+    }
+}
+
+.error {
+    animation-name: flash;
+    animation-duration: 1s;
+}
+
+.wrong {
+    background-color: #787c7e;
+    color: #ffffff;
+}
+
+.close {
+    background-color: #c9b458;
+    color: #ffffff;
+}
+
+.right {
+    background-color: #6aaa64;
+    color: #ffffff;
+}
