@@ -25,6 +25,10 @@ body {
   margin: 30px 0px;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
 .spinner {
   height: 40px;
 }
