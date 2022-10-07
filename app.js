@@ -1,5 +1,5 @@
 const squares = document.querySelectorAll('.board-square');
-const loading = document.querySelector('.loading');
+const loadingScreen = document.querySelector('.loading-screen');
 const ANSWER_LENGTH = 5;
 const ROUNDS = 6;
 let currentGuess = '';
@@ -9,7 +9,6 @@ let isLoading = false;
 
 async function init() {
   word = await getWordOfTheDay();
-  console.log(word);
 
   document.addEventListener('keydown', function handleKeyPress(event) {
     if (done) {
@@ -81,23 +80,23 @@ async function commitAnswer() {
 async function isValid(quess) {
   // The API will return back to you the word you sent and validWord which will be true or false. e.g.
   // { "word": "crane", "validWord": true } or { "word": "asdfg", "validWord": false }.
-  setLoading(true)
+  setLoading(true);
   const res = await fetch('https://words.dev-apis.com/validate-word', {
     method: 'POST',
     body: JSON.stringify({ word: quess }),
   });
   const { validWord } = await res.json();
-  setLoading(false)
+  setLoading(false);
   return validWord;
 }
 
 async function getWordOfTheDay() {
   // The response will look like this: {"word":"humph","puzzleNumber":3}
   // where the word is the current word of the day and the puzzleNumber is which puzzle of the day it is
-  setLoading(true)
+  setLoading(true);
   const res = await fetch('https://words.dev-apis.com/word-of-the-day');
   const { word } = await res.json();
-  setLoading(false)
+  setLoading(false);
   return word;
 }
 
@@ -158,19 +157,8 @@ function makeMap(word) {
 }
 
 function setLoading(value) {
-  if (value === true) {
-    isLoading = value;
-    // TODO set div as visible
-    loading.classList.remove('hidden');
-    return;
-  }
-
-  if (value === false) {
-    isLoading = value;
-    // TODO set div to hidden
-    loading.classList.add('hidden');
-    return;
-  }
+  isLoading = value;
+  loadingScreen.classList.toggle('show', isLoading);
 }
 
 init();
