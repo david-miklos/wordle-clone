@@ -33,7 +33,7 @@ async function init() {
     if (currentGuess.length < ANSWER_LENGTH) {
       // display letter on correct sqaure
       squares[round * ANSWER_LENGTH + currentGuess.length].innerText = letter;
-      currentGuess += letter;
+      currentGuess += letter.toLowerCase();
     }
   }
 
@@ -70,13 +70,13 @@ async function init() {
     }
   }
 
-  async function isValid(quess) {
+  async function isValid(guess) {
     // The API will return back to you the word you sent and validWord which will be true or false. e.g.
     // { "word": "crane", "validWord": true } or { "word": "asdfg", "validWord": false }.
     setLoading(true);
     const res = await fetch('https://words.dev-apis.com/validate-word', {
       method: 'POST',
-      body: JSON.stringify({ word: quess }),
+      body: JSON.stringify({ word: guess }),
     });
     const { validWord } = await res.json();
     setLoading(false);
